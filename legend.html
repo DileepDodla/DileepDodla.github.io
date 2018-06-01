@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>You can. Just do it!</title>
+    <style>
+        ::selection {
+                color:chartreuse;
+                background: black;
+            }
+	  #img1{
+		        opacity:0.5;
+                transform: rotate(60deg);
+                display:inline;
+                overflow:auto;
+	       }
+        body{
+    	      background-image: url("https://addons.opera.com/media/CACHE/images/themes/25/32625/1.0-rev1/images/f68e8c24-096e-4822-b715-6516085dc8a9/5e6c008481bb16c7a688aab940f6f7b0.jpg");
+    	       background-color: #181819;
+               color:#e6b800;
+               text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0  5px black;
+               font-family:"Courier New";
+               font-style:normal; 
+	         }
+	    #img2{ 
+                background-color: black;
+                background-image: url("http://cdn.wallpapersafari.com/55/87/8zOlIP.jpg");
+                background-size:cover;
+                opacity: 1;
+                padding:50px;
+                width:37%;
+                border: 10px dashed black;
+            }
+        #center{
+            background-color: #101010;
+            background-image: url("http://www.ozelmatematikkursu.com/images/slides/top_bg.jpg");
+            opacity: 1;
+            background-size: cover;
+            padding:50px;
+            width:40%;
+            /*height: 240px;*/
+            border: 10px ridge #080800;
+            text-align: left;
+            text-align: center;
+            }
+        .sidebyside{
+             vertical-align:text-top;            
+             display: inline-block;
+            }
+        #resize{
+                opacity: 1;
+                max-width:100%; 
+                max-height:100%;
+                margin:auto;
+                display:block;
+            }
+        #hov{
+              border: 1px solid #ccc;
+            text-decoration-color: white;
+            display: none;
+            font-size: 10px;
+            margin-top: 10px;
+            padding: 5px;
+            text-transform: uppercase;
+        }
+        a{
+            text-shadow: 0px 0px 12px black;
+        }
+        /* unvisited link */
+        a:link {
+            color: chocolate;
+        }
+        /* visited link */
+        a:visited {
+            color: chocolate;
+        }
+        /* mouse over link */
+        a:hover {
+            color: deepskyblue;
+        }
+        /* selected link */
+        a:active {
+            color: darkgoldenrod;
+        }
+   		p{ color:#8599AD; }
+        .audio-player{
+            float: right;
+            width: 488px;
+            height: 130px;
+            background-color: #222222;
+            background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+            /*background: -webkit-linear-gradient(top, #494949 0%, #161515 31%, #393838 55%, #242323 83%, #1b1a1a 100%, #161515 100%, #0b0b0b 100%);*/
+            border: 2px solid black;
+            box-shadow: 0 0 5px 2px #101010;/*#c7a8a8 #f3ebdc #003ba9
+            /*-webkit-box-shadow: inset 0 1px 0px rgba(255,255,255,.2);*/
+            color: white;
+            /*text-shadow: 0px 0px 2px black; */
+            font-family: verdana;
+            font-size: 12px;
+            /*-webkit-transition: all .7s ease;*/
+        }
+        .logo{
+            float: left;
+            /*background: #101010;*/
+        }
+        .player{
+            float: right;
+            margin-right: 5px;
+        }
+        #songTitle{
+            font-family: 'segoe print';
+            font-size: 13px;
+            color:red;/*#00D6FF;/*#74dad5;*/
+	        /*text-shadow: 0px 0px 10px rgba(0,0,0,1);*/
+             -webkit-animation: neon2 0.8s ease-in-out infinite alternate;
+            animation: neon3 0.8s ease-in-out infinite alternate;
+            text-decoration: none;
+            -webkit-transition: all 0.7s ease-in-out;
+            /*text-shadow: 0px 0px 1px black, 1px 1px 1px white, 1px 1px 0.5px cyan;*/
+            /*color: black;*/
+            text-align: center;
+        }
+        .song-title{
+            width: 300px;
+            padding: 5px 0px 5px 0px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        a.cool:hover{
+            text-shadow: 0px 0px 6px orange;
+        }
+        a.cool:visited{
+            color: orange;
+            text-shadow: 0px 0px 0px orange;
+        }
+        a.cool{
+            color: orange;
+            text-decoration: none;
+        }
+        #link{
+            animation: neon 0.8s ease-in-out infinite alternate;
+            -webkit-transition: all 0.7s ease-in-out;
+        }
+        #aerochord{
+            height: 130px;
+        }
+        .song-slider{
+            width: 333px;
+        }
+        .current-time{
+            float: left;
+            font-size: 10px;
+        }
+        .duration{
+            float: right;
+            font-size: 10px;
+        }
+        .controllers{
+            clear: both;
+            display: table;
+            cursor: pointer;
+        }
+        .controllers *{
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+        .volumeslider{
+            width: 90px;
+            margin-left: 5px;
+        }
+        code{
+            font-size: 75px;
+            color:red;
+            text-shadow: 1px 1px 2px black, 0 0 25px black, 0 0  5px black;
+            font-family:"Courier New";
+            font-style:normal;
+             -webkit-animation: neon7 0.1s ease-in-out infinite alternate;
+            animation: neon7 0.1s ease-in-out infinite alternate;
+            
+            
+        }
+      @-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+  }
+}
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+}
+
+@-webkit-keyframes neon3 {
+  from {
+    text-shadow: 0 0 8px #000, 0 0 13px #000, 0 0 13px #000, 0 0 4px darkred, 0 0 7px darkred, 0 0 8px darkred, 0 0 9px darkred, 0 0 10px darkred;
+  }
+  to {
+    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 10px #000, 0 0 2px black, 0 0 5px black, 0 0 4px black, 0 0 5px black, 0 0 7px black;
+  }
+}
+
+@-webkit-keyframes neon4 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #B6FF00, 0 0 70px #B6FF00, 0 0 80px #B6FF00, 0 0 100px #B6FF00, 0 0 150px #B6FF00;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+  }
+}
+
+@-webkit-keyframes neon5 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+  }
+}
+
+@-webkit-keyframes neon6 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+  }
+}
+@-webkit-keyframes neon7 {
+  from {
+    text-shadow: 0 0 10px #000, 0 0 20px #000, 0 0 30px #000, 0 0 4px darkred, 0 0 7px darkred, 0 0 8px darkred, 0 0 10px darkred, 0 0 15px darkred;
+  }
+  to {
+    text-shadow: 0 0 5px #000, 0 0 10px #000, 0 0 15px #000, 0 0 2px black , 0 0 5px black, 0 0 4px black, 0 0 5px black, 0 0 7px black;
+  }
+}
+        input[type=range]{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #000000;
+  border-radius: 1.3px;
+  border: 0.2px solid grey;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 16px;
+  width: 16px;
+  border-radius: 3px;
+  background: gold;
+  cursor:pointer;
+  margin-top: -6px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #000000;
+}
+	</style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(window).keypress(function(e) {
+  var audio = document.getElementById("aud");
+  if (e.which == 32) {
+      e.preventDefault();
+    if (audio.paused == true) 
+      audio.play();
+    else
+      audio.pause();
+  }
+});
+</script>
+    <script>
+        var x=0;
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            x=1;
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {            if(x==1)window.open("https://www.youtube.com/channel/UCRXuOXLW3LcQLWvxbZiIZ0w/playlists");
+/*http://nptel.ac.in/courses/111105041/1#*/
+            else alert("That wasn't the right one ! :(");
+        }
+    </script>
+<!--<img width="600" height="315" src = "https://lagunita.stanford.edu/c4x/OLI/ProbStat/asset/probstat.jpg" align = left>-->
+<iframe style="float:left;" src="http://free.timeanddate.com/clock/i5vzmxxw/n505/fn5/fs16/fc888/tct/pct/ftb/bas0/bat8/bac222/pa8/tt0/tw1/th2/tb4" frameborder="0" width="232" height="54" allowTransparency="true"></iframe>
+<div class="audio-player">
+        <div class="logo">
+            <img id="aerochord" style="opacity: 1;" src="http://www.pngmart.com/files/3/Music-PNG-File.png">
+            <!--https://i1.sndcdn.com/artworks-000125234036-qrm3vt-t500x500.jpg-->
+        </div>
+        <div class="player">
+            <div id="songTitle" class="song-title">Aero Chord - 4u <!--<img onclick="power(this)" style="float: right;max-width:10%;" src="Poweroff.gif">--></div>
+            <input id="songSlider" class="song-slider" type=range min="0" step="1" onchange="seekSong()">
+            <div>
+                <div id="currentTime" class="current-time">00:00</div>
+                <div id="duration" class="duration">00:00</div>
+            </div>
+            <div class="controllers">
+                <img src="https://png.icons8.com/repeat-filled/ios7/25" width="30px" onclick="loop(this)">
+                <!--http://ajournalofmusicalthings.com/wp-content/uploads/2017/05/media-repeat.png-->
+                <img src="slowmo.gif" width="30px" onclick="DecreasePlaybackRate()">
+                <img src="play.gif" id="pp"width="40px" onclick="playOrPauseSong(this)">
+                <img src="fastmo.gif" width="30px" onclick="IncreasePlaybackRate()">
+                <!---
+                https://png.icons8.com/rewind/android/24
+                https://png.icons8.com/pause/win8/26
+                https://png.icons8.com/fast-forward/android/24
+                -->
+                <img src="https://png.icons8.com/heart-outline/ios7/25" width="30px" onclick="love(this)">
+                <!--https://png.icons8.com/skip-to-start/android/24-->
+                <img src="https://png.icons8.com/audio-filled/ios7/25" style="margin-left: 2px;" width="25px" onclick="isMute(this)">
+                <input id="volumeSlider" class="volume-slider" type="range" min="0" max="1" step="0.01" onchange="adjustVolume()">
+                <!--<img src="https://png.icons8.com/audio/win8/26" width="15px" style="margin-left: 2px;">-->
+            </div>
+            <div id="nextSong" class="song-title" style="vertical-align: middle;">
+                <b style="font-family:'kartika';font-size: 14px; margin-left: 60px;">(: Follow 
+                <code id="glow" style="margin-right: 4px;margin-bottom: 3px;margin-left: 1px; font-family:'lucida calligraphy';font-size: 16px"><a class="cool" href="https://www.youtube.com/user/TheAeroChord/featured" target="_blank">Aero Chord</a></code> :)<img style="float: right; opacity: 0.7;" src="http://www.freeiconspng.com/uploads/downloading-png-22.png" width="20px" style="margin-left: 5px;" onclick="download()"/></b>    
+                <!--http://www.freeiconspng.com/uploads/downloading-png-22.png-->
+                <!--<code id="link" style="margin-right: 4px;margin-bottom: 3px;margin-left: 18px; font-family:'lucida calligraphy';font-size: 16px">
+                    <a target="_blank" href="https://www.youtube.com/user/TheAeroChord/featured">Aero Chord</a>
+                </code>-->
+            </div>        
+        </div>
+</div>
+    <div style="float:right"><img id="img1" draggable="true" ondragstart="drag(event)" width="30" height="25" src="https://vignette4.wikia.nocookie.net/teamfortress/images/c/c2/Mann_Co._Supply_Crate_Key_Icon.png/revision/latest?cb=20140409115358">
+<!--https://lh3.googleusercontent.com/HNVxOe5zy3gI2RZ5bwfAWW7tUuJ9MIoUkbbFVcNCvaBBu5SsyEttIzJhkPzXia9Dop8w4GMra6cvooM=w1280-h694-->
+<!--https://image.dek-d.com/27/0060/6445/t_114438220-->
+<!--http://victoriahitchcock.style/wp-content/uploads/2015/08/Key-with-transparent-background-300x200.png--> 
+    </div>
+<!--http://dl2.mp3party.net/download/1247353,http://s.tunespk.cx/mp3dj/urbanstep-we-are/s219101935.mp3-->
+    <div style="clear: both;">
+<h1 align=center>Probability & Statistics
+    <h2>Unit-I
+<p>Probability: Introduction, axiomatic approach, conditional probability,
+baye’s theorem, stochastic process, random variables, discrete and
+continuous distributions, expectation, variance, moments, moments
+    generating functions.</p>
+Unit-II
+<p>Distributions: binomial, poisson, normal, uniform, exponential and
+    gamma. Properties and applications.</p>
+Unit-III
+<p>Estimator: estimation of parameters by method of moments and
+maximum likelihood - testing of hypothesis - small sample tests - t-test, f-test
+    and chi-square test.</p>
+Unit-IV
+<p>Correlation: curve fitting by method of least squares - linear, quadratic
+and exponential fitting - correlation - rank correlation - regression analysis - multiple
+    correlation.</p>
+Unit-V
+<p>Quality Control: concept of quality of a manufactured product - causes
+of variation - principles of shewart control charts - X-chart, R-chart, p-chart,
+    np-chart and C-chart.</p>
+<div class="sidebyside" id="center">
+    <a href="http://nptel.ac.in/courses/111105041/1#" title="NPTEL-National Programme on Technology Enhanced Learning "target="_blank">NPTEL Link</a>
+</div>
+    <div class="sidebyside" id="img2">
+        <p style="color:lightgoldenrodyellow;font-family:lucida console; text-shadow: 0px 0px 3px aqua,2px 2px 0px black,;"><u style="color:yellow;font-family:sans-serif;text-shadow: 0px 0px 5px gold;">BONUS:</u> Find the key to open!</p><img draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" width="220" height="165" id="resize" src="https://www.edx.org/sites/default/files/styles/course_video_banner/public/course/image/featured-card/stats-mooc-logo-flat_318x210.jpg?itok=lZSsL2Gd">
+</div>
+    </h2>
+    </h1>
+</div>
+<div align=center>
+    <code>
+        HTML5
+    </code>
+</div>
+     <script>
+        var songs = ["ae"]
+        
+        var audioPlayer = document.getElementById('audio-player');
+        var songTitle = document.getElementById('songTitle');
+        var songSlider = document.getElementById('songSlider');
+        var currentTime = document.getElementById('currentTime');
+        var duration = document.getElementById('duration');
+        var volumeSlider = document.getElementById('volumeSlider');
+        var nextSong = document.getElementById('nextSong');
+        
+        var song = new Audio();
+        var currentSong = 0; 
+        window.onload = loadSong();
+        song.loop =false;
+        
+        var temp;
+        
+        function loadSong()
+        {
+            song.src="ae.mp3";
+            //songTitle.textContent = (currentSong + 1) + ". " + songs[currentSong];
+            //nextSong.innerHTML = "<b>Next Song: </b>" + songs[currentSong + 1 % songs.length];
+            song.playbackRate = 1;
+            song.volume = volumeSlider.value;
+            window.onload=song.play();
+            setTimeout(showDuration,1000);
+        }
+        
+        setInterval(updateSongSlider,1000);
+        
+        function updateSongSlider(){
+            var c = Math.round(song.currentTime);
+            songSlider.value = c;
+            currentTime.textContent = convertTime(c);
+            if(song.ended){
+                document.getElementById("pp").src="play.gif";
+            }
+        }
+        
+        function convertTime(secs){
+            var min = Math.floor(secs/60);
+            var sec = secs % 60;
+            min = (min < 10) ? "0" + min : min;
+            sec = (sec < 10) ? "0" + sec : sec;
+            return (min + ":" + sec);
+        }
+        
+        function showDuration(){
+            var d = Math.round(song.duration); 
+            songSlider.setAttribute("max",d);
+            duration.textContent = convertTime(d);
+        }
+        
+        function playOrPauseSong(img){
+            song.playbackRate = 1;
+            if(song.paused){
+                song.play(); img.src="pause.gif";
+                /*https://png.icons8.com/pause/win8/26*/
+            }
+            else{
+                song.pause(); img.src="play.gif";
+                /*https://png.icons8.com/circled-play/androidL/24*/
+            }
+        }
+        
+        var looop=0;
+        
+        function loop(img){
+            if(looop==0){
+                song.loop=true;
+                img.src="https://png.icons8.com/repeat-one-filled/ios7/25";
+                /*http://mytonal.com/Images/repeat_single_song.png*/
+                looop=1;
+            }
+            else{
+                song.loop=false;
+                img.src="https://png.icons8.com/repeat-filled/ios7/25";
+                /*http://ajournalofmusicalthings.com/wp-content/uploads/2017/05/media-repeat.png*/
+                looop=0;
+            }
+        }
+        
+        var lov="Null";
+        
+        function love(img){
+            if(lov=="Null"){
+                img.src="https://png.icons8.com/heart-outline/color/24";
+                lov="Full";
+            }
+            else{
+                img.src="https://png.icons8.com/heart-outline/ios7/25";
+                lov="Null";
+            }
+        
+        }
+    
+        function seekSong(){
+                song.currentTime = songSlider.value;
+                currentTime.textContent = convertTime(song.currentTime);
+        }
+        
+        function adjustVolume(){
+            song.volume = volumeSlider.value;
+        }
+        
+        var mute=0;
+        
+        function isMute(img){
+            if(mute==0){
+                song.muted=true;
+                img.setAttribute("width","24px");
+                img.src="https://png.icons8.com/mute-filled/ios7/25";
+                mute=1;
+            }
+            else{
+                song.muted=false;
+                img.setAttribute("width","25px");
+                img.src="https://png.icons8.com/audio-filled/ios7/25";
+                mute=0;
+            }        }
+        
+        function IncreasePlaybackRate(){
+            
+           if(song.playbackRate<1.75) song.playbackRate += 0.25;
+        }
+        
+        function DecreasePlaybackRate(){
+            if(song.playbackRate>0.5){song.playbackRate -= 0.25;}
+        }
+        
+        function download(){
+            window.open("https://drive.google.com/uc?export=download&id=1hpfVs4HhVTJzYaY_HYayAA9hlRrxp2C6");
+        }
+        
+        /*var pow=0;
+        
+        function power(img){
+            if(pow==0)
+                {
+                    img.src="Poweron.gif";
+                    pow=1;
+                }
+            else{
+                    img.src="Poweroff.gif";
+                    pow=0;
+            }
+        }*/
+    </script>
+</body>
+</html>   
